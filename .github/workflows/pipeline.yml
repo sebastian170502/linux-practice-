@@ -1,19 +1,34 @@
-name: fritzsforge test pipeline
+name: Next.js Build Prep
 
 on:
   push:
     branches:
       - main
+
 jobs:
-  test-server-files:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 1. download my code to the github server
+      - name: 1. Download code
         uses: actions/checkout@v4
 
-      - name: 2. verify file permissions
-        run: ls -la
+      - name: 2. Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
 
-      - name: 3. execute the deployment script
-        run: bash deploy.sh
+      - name: 3. Verify Node Installation
+        run: node -v
+
+      - name: 4. Securely Inject Environment Variables
+        env:
+          DB_URL: ${{ secrets.DATABASE_URL }} 
+        run: |
+          echo "Simulating Next.js build..."
+          if [ -n "$DB_URL" ]; then 
+            echo "SUCCESS: Database URL securely injected!"
+          else
+            echo "ERROR: Secret is missing!"
+            exit 1
+          fi
