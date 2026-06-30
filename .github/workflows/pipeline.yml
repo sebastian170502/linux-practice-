@@ -23,10 +23,10 @@ jobs:
 
       - name: 4. Securely Inject Environment Variables
         env:
-          DB_URL: ${{ secrets.DATABASE_URL }} 
+          DB_URL: ${{ secrets.FIRST_SECRET_ACTION }}
         run: |
           echo "Simulating Next.js build..."
-          if [ -n "$DB_URL" ]; then 
+          if [ -n "$DB_URL" ]; then
             echo "SUCCESS: Database URL securely injected!"
           else
             echo "ERROR: Secret is missing!"
