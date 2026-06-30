@@ -5,15 +5,15 @@ on:
     branches:
       - main
 jobs:
-test-server-files:
-runs-on: ubuntu-latest
+  test-server-files:
+    runs-on: ubuntu-latest
 
-steps:
--name: 1. download my code to the github server
-uses: actions/checkout@v4
+    steps:
+      - name: 1. download my code to the github server
+        uses: actions/checkout@v4
 
--name: 2. verify file permissions
-uses: ls -la
+      - name: 2. verify file permissions
+        run: ls -la
 
--name: 3. execute the deployment script
-uses: bash deploy.sh
+      - name: 3. execute the deployment script
+        run: bash deploy.sh
