@@ -1,0 +1,14 @@
+[Unit]
+Description=24/7 Linux Server Monitoring Daemon
+After=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu/workspace/fritzsforge
+ExecStart=/home/ubuntu/workspace/fritzsforge/monitor.sh
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
